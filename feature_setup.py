@@ -15,7 +15,6 @@ def setup_data(data):
 	data['Title'] = data["Title"].replace(['Mlle','Mme','Ms','Dr','Major','Lady','Countess','Jonkheer','Col','Rev','Capt','Sir','Don'],
 			['Miss','Miss','Miss','Mr','Mr','Mrs','Mrs','Other','Mr','Mr','Mr','Mr','Mr'])
 	data['Title'] = data["Title"].apply(lambda x: 'Mrs' if x == 'Dona' else x)
-	#print("Title feature successfully created.")
 
 	# used to observe the average age for each Title
 	#print(data.groupby('Title')['Age'].mean())
@@ -46,6 +45,6 @@ def setup_data(data):
 	data['Embarked'] = data['Embarked'].replace(['S','C','Q'], [0,1,2])
 	data['Title'] = data['Title'].replace(['Mr','Mrs','Miss','Master','Other'], [0,1,2,3,4])
 
-	return data.drop(['Name','Age','Ticket','Fare','Cabin', 'Fare_Split','PassengerId'], axis=1)
-
 	print('All features setup successfully.')
+
+	return data.drop(['Name','Age','Ticket','Fare','Cabin', 'Fare_Split','PassengerId'], axis=1)

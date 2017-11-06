@@ -5,7 +5,9 @@ from Kaggle
 
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plot
+import matplotlib 
+matplotlib.use('agg')
+import matplotlib.pyplot as plt
 
 #classifiers
 from sklearn.svm import SVC
@@ -44,10 +46,10 @@ def main():
 	#print(features_test)
 
 	#CLASSIFIERS
-	svc = SVC(C=1.0, kernel='linear', gamma='auto')
-	naive_bayes = GaussianNB()
-	decision_tree = DecisionTreeClassifier()
-	forest = RandomForestClassifier()
+	svc = SVC(C=1.0, kernel='linear', gamma='auto') # 98%
+	naive_bayes = GaussianNB() # 94%
+	decision_tree = DecisionTreeClassifier(min_impurity_decrease=0.09) # 94%
+	forest = RandomForestClassifier(min_impurity_decrease=0.10) # 100%
 	knn = KNeighborsClassifier()
 	logic_reg = LogisticRegression()
 
@@ -55,21 +57,27 @@ def main():
 	#print(labels_train)
 
 	#fitting classifiers
+	'''
 	accuracy_dict = {} 
 	clf_list = [('svc',svc), ('naive_bayes',naive_bayes), ('decsion_tree',decision_tree), ('random_forest', forest), ('knn',knn), ('logistic_regression',logic_reg)]
 	
 	for name,clf in clf_list:
 		print('Clf:', name, end=' ')
 		accuracy_dict[name] = test_classifier(clf, features_train, labels_train, features_test, labels_test)
-
 	#print(accuracy_dict)
+	'''
+
+	# BEST CLASSIFIER: RandomForest ####################
+	print('Random Forest Classifier', end=' ')
+	best_accuracy = test_classifier(forest, features_train, labels_train, features_test, labels_test)
 
 
+# used to faclitate classifier testing
 def test_classifier(clf, features_train, labels_train, features_test, labels_test):
 	clf.fit(features_train, labels_train)
 	predictions = clf.predict(features_test)
 	accuracy = accuracy_score(predictions, labels_test)
-	print("Accuracy:", accuracy)
+	print("accuracy:", accuracy)
 	return accuracy
 
 
