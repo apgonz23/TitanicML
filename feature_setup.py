@@ -45,6 +45,6 @@ def setup_data(data):
 	data['Embarked'] = data['Embarked'].replace(['S','C','Q'], [0,1,2])
 	data['Title'] = data['Title'].replace(['Mr','Mrs','Miss','Master','Other'], [0,1,2,3,4])
 
-	print('All features setup successfully.')
+	#print('All features setup successfully.')
 
 	return data.drop(['Name','Age','Ticket','Fare','Cabin', 'Fare_Split','PassengerId'], axis=1)

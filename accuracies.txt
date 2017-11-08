@@ -1,0 +1,8 @@
+Classifier - Accuracy
+SVC accuracy: 0.832089552238806
+Naive_Bayes accuracy: 0.8171641791044776
+Decsion_Tree accuracy: 0.8059701492537313
+Random_Forest accuracy: 0.8134328358208955
+KNN accuracy: 0.8395522388059702
+Logistic_Regression accuracy: 0.8022388059701493
+Best Classifier: KNN accuracy 0.8395522388059702
